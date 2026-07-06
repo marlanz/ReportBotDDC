@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.*
+
+# IDEs
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checkers
+.mypy_cache/
+.pyright/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Playwright
+playwright-report/
+test-results/
+
+# OCR output (if generated)
+*.hocr
+
+# Temporary files
+temp/
+tmp/
+
+# Local screenshots and downloaded images (optional)
+screenshots/
+downloads/
+
+# Output files (if generated)
+output/
+exports/
+
+hoa_don_output.json
+test_pdf/
