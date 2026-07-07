@@ -23,16 +23,18 @@ from datetime import datetime
 from html.parser import HTMLParser
 
 import requests
+from dotenv import load_dotenv
 
 # =========================
 # CONFIG
 # =========================
+load_dotenv()
 JOB_URL = "https://paddleocr.aistudio-app.com/api/v2/ocr/jobs"
 TOKEN = os.getenv("PADDLEOCR_TOKEN").strip()
 MODEL = os.getenv("PADDLEOCR_MODEL").strip()
 
-DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "test_pdf")
-DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "hoa_don_output.json")
+DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./raw_bill/hoa_don_ki_3_t6")
+DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don__ki3_t6_output.json")
 
 POLL_INTERVAL_SEC = 5      # giây giữa các lần poll
 MAX_POLL_ATTEMPTS = 120    # tối đa ~10 phút mỗi file
@@ -411,6 +413,11 @@ def extract_invoice_data(markdown_text: str, pdf_filename: str) -> dict:
     # Fallback: nếu tong_thanh_toan đã parse được từ bảng
     if not so_tien_tt and tong_thanh_toan:
         so_tien_tt = f"{tong_thanh_toan:,} đồng".replace(",", ".")
+
+    # Fallback: nếu tong_thanh_toan vẫn null nhưng so_tien_hien_thi đọc được
+    # → parse so_tien_hien_thi thành số nguyên để dùng làm tong_tien_thanh_toan
+    if tong_thanh_toan is None and so_tien_tt:
+        tong_thanh_toan = normalize_money(so_tien_tt)
 
     # --- Hạn thanh toán ---
     han_thanh_toan = _find_line_after(lines, "Hạn thanh toán")
