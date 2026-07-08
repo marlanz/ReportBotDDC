@@ -2,13 +2,15 @@
 export_to_excel.py
 ==================
 Đọc các file JSON hóa đơn tiền điện từ thư mục output_bill,
-rồi xuất ra file Excel với mỗi sheet tương ứng một kỳ hóa đơn.
+rồi xuất ra file Excel với mỗi sheet tương ứng một khách hàng (Mã KH).
 
-Tên sheet: ngày kết thúc của kỳ (vd: "10/06/2026")
-Nội dung mỗi sheet:
-    - Mã KH       (ma_khach_hang)
-    - Tổng kWh    (tong_kwh)
-    - Tổng tiền   (tong_tien_thanh_toan)
+Nội dung mỗi sheet khách hàng:
+    - Metadata khách hàng (Mã KH, Tên KH, Địa chỉ) ở đầu trang.
+    - Bảng chi tiết gồm các cột:
+        - Kỳ hóa đơn
+        - Tổng kWh
+        - Tổng tiền thanh toán (VNĐ)
+    - Hàng Tổng cộng (TỔNG CỘNG) tính tổng kWh và tổng tiền của các kỳ.
 
 Yêu cầu:
     pip install openpyxl
@@ -56,7 +58,7 @@ def log(message: str) -> None:
 # =========================
 # CONFIG
 # =========================
-DEFAULT_INPUT_DIR = os.path.join(os.path.dirname(__file__), "output_bill")
+DEFAULT_INPUT_DIR = os.path.join(os.path.dirname(__file__), "ah_raw_bill")
 DEFAULT_OUTPUT = os.path.join(os.path.dirname(__file__), "hoa_don_export.xlsx")
 
 # Màu header (xanh dương đậm)
@@ -81,56 +83,43 @@ LEFT = Alignment(horizontal="left", vertical="center")
 # =========================
 # HELPERS
 # =========================
+def clean_html(text: str) -> str:
+    """Loại bỏ các thẻ HTML như </div> khỏi chuỗi."""
+    if not text:
+        return ""
+    return re.sub(r"<[^>]+>", "", text).strip()
+
+
 def parse_end_date(ky_hoa_don: str) -> str:
     """
     Trích ngày kết thúc kỳ từ chuỗi ky_hoa_don.
-
-    Ví dụ đầu vào:
-        "Kỳ 1 - 6/2026 (10 ngày từ 01/06/2026 đến 10/06/2026)"
-        "Ky 2 - 6/2026 (10 ngay tu 11/06/2026 den 20/06/2026)"
-
-    Trả về: "10/06/2026"  (chuỗi ngày kết thúc)
-    Trả về "" nếu không tìm thấy.
+    Ví dụ: "Kỳ 1 - 6/2026 (10 ngày từ 01/06/2026 đến 10/06/2026)" -> "10/06/2026"
     """
-    if not ky_hoa_don:
-        return ""
-    # Tìm tất cả chuỗi dd/mm/yyyy, lấy cái cuối cùng (= ngày kết thúc)
-    dates = re.findall(r"\d{2}/\d{2}/\d{4}", ky_hoa_don)
+    cleaned = clean_html(ky_hoa_don)
+    dates = re.findall(r"\d{2}/\d{2}/\d{4}", cleaned)
     return dates[-1] if dates else ""
 
 
-def sheet_name_from_end_date(end_date: str) -> str:
-    """
-    Chuyển "10/06/2026" → "10_06_2026" (tên sheet hợp lệ cho Excel,
-    vì dấu / bị cấm trong tên sheet).
-    """
-    return end_date.replace("/", "_") if end_date else "Unknown"
-
-
 def sort_key_for_date(date_str: str) -> datetime:
-    """Chuyển dd_mm_yyyy hoặc dd/mm/yyyy thành datetime để sắp xếp."""
-    normalized = date_str.replace("_", "/")
+    """Chuyển dd/mm/yyyy thành datetime để sắp xếp."""
     try:
-        return datetime.strptime(normalized, "%d/%m/%Y")
+        return datetime.strptime(date_str, "%d/%m/%Y")
     except ValueError:
         return datetime.min
 
 
-def format_vnd(amount) -> str:
-    """Định dạng số thành chuỗi tiền VNĐ (có dấu chấm phân cách nghìn)."""
-    if amount is None:
-        return ""
-    try:
-        return f"{int(amount):,}".replace(",", ".")
-    except (ValueError, TypeError):
-        return str(amount)
+def sort_key_for_client_record(client: dict) -> datetime:
+    """Sắp xếp các kỳ của khách hàng tăng dần theo ngày kết thúc."""
+    ky = client.get("ky_hoa_don", "")
+    end_date = parse_end_date(ky)
+    return sort_key_for_date(end_date)
 
 
 # =========================
-# EXCEL STYLING
+# EXCEL STYLING HELPERS
 # =========================
-def apply_header(ws, headers: list[str], row: int = 1):
-    """Ghi và tô màu hàng header."""
+def apply_header(ws, headers: list[str], row: int = 5):
+    """Ghi và tô màu hàng header bảng."""
     for col_idx, title in enumerate(headers, start=1):
         cell = ws.cell(row=row, column=col_idx, value=title)
         cell.fill = HEADER_FILL
@@ -159,19 +148,20 @@ def apply_total_row(ws, row: int, values: list, alignments: list):
 
 def auto_fit_columns(ws):
     """Tự động điều chỉnh độ rộng cột theo nội dung."""
-    for col_cells in ws.columns:
+    for col_idx in range(1, ws.max_column + 1):
+        col_letter = get_column_letter(col_idx)
         max_len = 0
-        col_letter = get_column_letter(col_cells[0].column)
-        for cell in col_cells:
-            try:
-                cell_len = len(str(cell.value)) if cell.value is not None else 0
-                if cell_len > max_len:
-                    max_len = cell_len
-            except Exception:
-                pass
-        # Thêm padding; giới hạn tối đa 50
-        adjusted = min(max_len + 4, 50)
-        ws.column_dimensions[col_letter].width = adjusted
+        for row in range(1, ws.max_row + 1):
+            val = ws.cell(row=row, column=col_idx).value
+            if val is not None:
+                # Nếu là dòng 1-3 thông tin khách hàng, không dùng để tính độ rộng cột 2 
+                # để tránh cột quá rộng do địa chỉ dài.
+                if row in (1, 2, 3) and col_idx == 2:
+                    continue
+                max_len = max(max_len, len(str(val)))
+        
+        adjusted = min(max_len + 4, 60)
+        ws.column_dimensions[col_letter].width = max(adjusted, 15)
 
 
 # =========================
@@ -182,10 +172,10 @@ def load_all_json(input_dir: str) -> list[dict]:
     pattern = os.path.join(input_dir, "*.json")
     json_files = sorted(glob.glob(pattern))
     if not json_files:
-        log(f"[ERROR] Khong tim thay file JSON nao trong: {input_dir}")
+        log(f"[ERROR] Không tìm thấy file JSON nào trong: {input_dir}")
         sys.exit(1)
 
-    log(f"[INFO] Tim thay {len(json_files)} file JSON:")
+    log(f"[INFO] Tìm thấy {len(json_files)} file JSON:")
     all_clients: list[dict] = []
     for path in json_files:
         log(f"       - {os.path.basename(path)}")
@@ -194,75 +184,106 @@ def load_all_json(input_dir: str) -> list[dict]:
         clients = data.get("clients", [])
         all_clients.extend(clients)
 
-    log(f"[INFO] Tong so ban ghi: {len(all_clients)}")
+    log(f"[INFO] Tổng số bản ghi tìm thấy: {len(all_clients)}")
     return all_clients
 
 
-def group_by_period(clients: list[dict]) -> dict[str, list[dict]]:
+def group_by_client(clients: list[dict]) -> dict[str, list[dict]]:
     """
-    Nhóm clients theo kỳ hóa đơn (dùng ngày kết thúc kỳ làm key).
-    Key: tên sheet dạng "10_06_2026"
+    Nhóm clients theo mã khách hàng.
+    Key: mã khách hàng (vd: "PE15000352029")
     """
     groups: dict[str, list[dict]] = {}
     for client in clients:
         if "error" in client:
             continue  # bỏ qua bản ghi lỗi
-        ky = client.get("ky_hoa_don", "")
-        end_date = parse_end_date(ky)
-        sheet_name = sheet_name_from_end_date(end_date) if end_date else "Unknown"
-        groups.setdefault(sheet_name, []).append(client)
+        ma_kh = client.get("ma_khach_hang", "").strip()
+        if not ma_kh:
+            continue
+        groups.setdefault(ma_kh, []).append(client)
     return groups
 
 
 def build_excel(groups: dict[str, list[dict]], output_path: str):
-    """Tạo file Excel từ dữ liệu đã nhóm."""
+    """Tạo file Excel với mỗi khách hàng một sheet."""
     wb = openpyxl.Workbook()
     # Xóa sheet mặc định
     wb.remove(wb.active)
 
-    # Sắp xếp sheet theo ngày tăng dần
-    sorted_sheet_names = sorted(groups.keys(), key=sort_key_for_date)
+    # Sắp xếp mã khách hàng theo bảng chữ cái
+    sorted_client_codes = sorted(groups.keys())
 
-    HEADERS = ["Mã khách hàng", "Tổng kWh", "Tổng tiền thanh toán (VNĐ)"]
-    ALIGNMENTS = [CENTER, RIGHT, RIGHT]
+    HEADERS = ["Kỳ hóa đơn", "Tổng kWh", "Tổng tiền thanh toán (VNĐ)"]
+    ALIGNMENTS = [LEFT, RIGHT, RIGHT]
     TOTAL_ALIGNMENTS = [CENTER, RIGHT, RIGHT]
 
-    for sheet_name in sorted_sheet_names:
-        records = groups[sheet_name]
+    for ma_kh in sorted_client_codes:
+        records = groups[ma_kh]
+        
+        # Sắp xếp các kỳ của khách hàng theo thời gian tăng dần
+        records_sorted = sorted(records, key=sort_key_for_client_record)
+
+        # Lấy thông tin khách hàng từ bản ghi đầu tiên
+        first_rec = records_sorted[0]
+        ten_kh = first_rec.get("ten_khach_hang", "")
+        # Nếu trích xuất nhầm "Địa chỉ" làm tên, giữ nguyên hoặc bỏ qua
+        if ten_kh.strip() == "Địa chỉ":
+            ten_kh = "Chưa rõ"
+        dia_chi = first_rec.get("dia_chi", "")
+
+        # Tạo sheet mới cho khách hàng (Excel giới hạn tên sheet tối đa 31 ký tự)
+        sheet_name = ma_kh[:31]
         ws = wb.create_sheet(title=sheet_name)
 
-        # Freeze panes (cố định hàng header)
-        ws.freeze_panes = "A2"
+        # 1. Ghi Metadata khách hàng ở các hàng đầu tiên
+        ws.cell(row=1, column=1, value="Mã khách hàng:").font = Font(bold=True)
+        ws.cell(row=1, column=2, value=ma_kh)
+        
+        ws.cell(row=2, column=1, value="Tên khách hàng:").font = Font(bold=True)
+        ws.cell(row=2, column=2, value=ten_kh)
+        
+        ws.cell(row=3, column=1, value="Địa chỉ:").font = Font(bold=True)
+        ws.cell(row=3, column=2, value=dia_chi)
 
-        # Header
-        apply_header(ws, HEADERS, row=1)
+        # Căn lề trái cho metadata
+        for r in (1, 2, 3):
+            ws.cell(row=r, column=1).alignment = LEFT
+            ws.cell(row=r, column=2).alignment = LEFT
 
-        # Dữ liệu
+        # Cố định hàng header (hàng 5)
+        ws.freeze_panes = "A6"
+
+        # 2. Ghi Header bảng ở hàng 5
+        apply_header(ws, HEADERS, row=5)
+
+        # 3. Ghi dữ liệu các kỳ hóa đơn
         total_kwh = 0
         total_tien = 0
+        start_row = 6
 
-        for row_idx, client in enumerate(records, start=2):
-            ma_kh = client.get("ma_khach_hang", "")
+        for i, client in enumerate(records_sorted):
+            row_idx = start_row + i
+            ky_raw = client.get("ky_hoa_don", "")
+            ky_clean = clean_html(ky_raw)
             kwh = client.get("tong_kwh") or 0
             tien = client.get("tong_tien_thanh_toan")
 
-            # Hiển thị số nguyên; None → chuỗi rỗng để dễ nhận biết
-            kwh_display = int(kwh) if kwh else 0
-            tien_display = int(tien) if tien is not None else None
+            kwh_val = int(kwh)
+            tien_val = int(tien) if tien is not None else None
 
             apply_data_row(
                 ws,
                 row=row_idx,
-                values=[ma_kh, kwh_display, tien_display],
+                values=[ky_clean, kwh_val, tien_val],
                 alignments=ALIGNMENTS,
             )
 
-            total_kwh += kwh_display
-            if tien is not None:
-                total_tien += int(tien)
+            total_kwh += kwh_val
+            if tien_val is not None:
+                total_tien += tien_val
 
-        # Hàng tổng cộng
-        total_row = len(records) + 2
+        # 4. Ghi hàng Tổng cộng
+        total_row = start_row + len(records_sorted)
         apply_total_row(
             ws,
             row=total_row,
@@ -270,23 +291,21 @@ def build_excel(groups: dict[str, list[dict]], output_path: str):
             alignments=TOTAL_ALIGNMENTS,
         )
 
-        # Định dạng số cho cột kWh (B) và tiền (C) — dùng number format Excel
-        for row_idx in range(2, total_row + 1):
+        # Định dạng số cho cột kWh (B) và tiền (C) cho các hàng dữ liệu + tổng cộng
+        for row_idx in range(start_row, total_row + 1):
             ws.cell(row=row_idx, column=2).number_format = "#,##0"
             ws.cell(row=row_idx, column=3).number_format = "#,##0"
 
-        # Auto-fit
-        auto_fit_columns(ws)
-
-        # Tiêu đề kỳ (hiển thị ngày dạng đọc được) ở trên cùng — tuỳ chọn
-        # Ví dụ sheet "10_06_2026" → hiển thị "Kỳ kết thúc: 10/06/2026"
-        readable_date = sheet_name.replace("_", "/")
+        # Thiết lập màu tab cho chuyên nghiệp
         ws.sheet_properties.tabColor = "1F4E79"
 
-        log(f"   [OK] Sheet '{sheet_name}': {len(records)} khach hang")
+        # Auto-fit độ rộng cột
+        auto_fit_columns(ws)
+
+        log(f"   [OK] Khách hàng '{ma_kh}': {len(records_sorted)} kỳ hóa đơn")
 
     wb.save(output_path)
-    log(f"\n[OK] Da xuat file Excel: {output_path}")
+    log(f"\n[OK] Đã xuất file Excel thành công: {output_path}")
 
 
 # =========================
@@ -294,12 +313,12 @@ def build_excel(groups: dict[str, list[dict]], output_path: str):
 # =========================
 def main():
     parser = argparse.ArgumentParser(
-        description="Xuất dữ liệu hóa đơn điện từ JSON ra Excel (mỗi kỳ một sheet)"
+        description="Xuất dữ liệu hóa đơn điện từ JSON ra Excel (mỗi khách hàng một sheet)"
     )
     parser.add_argument(
         "--input-dir",
         default=DEFAULT_INPUT_DIR,
-        help=f"Thư mục chứa các file JSON đầu ra (default: {DEFAULT_INPUT_DIR})",
+        help=f"Thư mục chứa các file JSON đầu vào (default: {DEFAULT_INPUT_DIR})",
     )
     parser.add_argument(
         "--output",
@@ -308,17 +327,17 @@ def main():
     )
     args = parser.parse_args()
 
-    log("=== Xuat hoa don dien -> Excel ===")
-    log(f"[INFO] Thu muc JSON : {args.input_dir}")
+    log("=== Xuất hóa đơn điện -> Excel (Một sheet/khách hàng) ===")
+    log(f"[INFO] Thư mục JSON : {args.input_dir}")
     log(f"[INFO] File Excel   : {args.output}")
     log("")
 
     clients = load_all_json(args.input_dir)
-    groups = group_by_period(clients)
+    groups = group_by_client(clients)
 
-    log(f"\n[INFO] So ky hoa don: {len(groups)}")
+    log(f"\n[INFO] Số khách hàng: {len(groups)}")
     build_excel(groups, args.output)
-    log("=== Hoan thanh ===")
+    log("=== Hoàn thành ===")
 
 
 if __name__ == "__main__":

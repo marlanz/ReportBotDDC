@@ -33,8 +33,12 @@ JOB_URL = "https://paddleocr.aistudio-app.com/api/v2/ocr/jobs"
 TOKEN = os.getenv("PADDLEOCR_TOKEN").strip()
 MODEL = os.getenv("PADDLEOCR_MODEL").strip()
 
-DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./raw_bill/hoa_don_ki_3_t6")
-DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don__ki3_t6_output.json")
+# DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./raw_bill/hoa_don_ki_3_t6")
+# DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don__ki3_t6_output.json")
+
+DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./ah_raw_bill")
+DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don_t6_ah_output.json")
+
 
 POLL_INTERVAL_SEC = 5      # giây giữa các lần poll
 MAX_POLL_ATTEMPTS = 120    # tối đa ~10 phút mỗi file
@@ -479,19 +483,22 @@ def extract_invoice_data(markdown_text: str, pdf_filename: str) -> dict:
 # =========================
 # DISCOVER PDF FILES
 # =========================
-def find_pdf_files(pdf_dir: str) -> list[str]:
+def find_pdf_files(pdf_dir: str) -> list[tuple[str, str]]:
     """
     Tìm tất cả file .pdf trong pdf_dir (bao gồm các thư mục con một cấp).
+    Returns list of (pdf_path, client_code_from_folder).
+    client_code_from_folder is the parent folder name if in a subfolder, else empty string.
     """
     pdf_files = []
     for entry in os.scandir(pdf_dir):
         if entry.is_file() and entry.name.lower().endswith(".pdf"):
-            pdf_files.append(entry.path)
+            pdf_files.append((entry.path, ""))
         elif entry.is_dir():
+            folder_client_code = entry.name  # e.g. "PE15000352029"
             for sub in os.scandir(entry.path):
                 if sub.is_file() and sub.name.lower().endswith(".pdf"):
-                    pdf_files.append(sub.path)
-    return sorted(pdf_files)
+                    pdf_files.append((sub.path, folder_client_code))
+    return sorted(pdf_files, key=lambda x: x[0])
 
 
 # =========================
@@ -528,21 +535,27 @@ def main():
 
     # 2. OCR từng file → trích xuất dữ liệu
     all_records = []
-    for idx, pdf_path in enumerate(pdf_files, start=1):
+    for idx, (pdf_path, folder_client_code) in enumerate(pdf_files, start=1):
         pdf_name = os.path.basename(pdf_path)
-        log(f"\n>> [{idx}/{len(pdf_files)}] Đang xử lý: {pdf_name}")
+        display_name = f"{folder_client_code}/{pdf_name}" if folder_client_code else pdf_name
+        log(f"\n>> [{idx}/{len(pdf_files)}] Đang xử lý: {display_name}")
         try:
             markdown_text = ocr_pdf(pdf_path)
             record = extract_invoice_data(markdown_text, pdf_name)
+            # Override ma_khach_hang with folder name if available
+            # (folder structure is the definitive source from the Playwright crawler)
+            if folder_client_code:
+                record["ma_khach_hang"] = folder_client_code
             all_records.append(record)
             log(f"   [OK] Mã KH: {record['ma_khach_hang']} | "
                 f"Tổng tiền: {record['tong_tien_thanh_toan']:,} đồng"
                 if record['tong_tien_thanh_toan'] else
                 f"   [OK] Mã KH: {record['ma_khach_hang']} | Tổng tiền: N/A")
         except Exception as exc:
-            log(f"   [ERROR] {pdf_name}: {exc}")
+            log(f"   [ERROR] {display_name}: {exc}")
             all_records.append({
-                "source_file": pdf_name,
+                "source_file": display_name,
+                "ma_khach_hang": folder_client_code,
                 "error": str(exc),
                 "crawl_time": datetime.now().isoformat(timespec="seconds"),
             })

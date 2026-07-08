@@ -1,0 +1,1309 @@
+<form class="form traCuu" onsubmit="return false;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="tools-tab d-flex align-items-center mr-2">
+                                        <div class="item mr-2 active" loaitracuu="hoadon">
+                                            <img class="mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Hoa Don.svg" height="17">
+                                            Hóa đơn điện                                        </div>
+                                        <div class="item menu-lichsuthanhtoan" loaitracuu="lichsuthanhtoan">
+                                            <img class="mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_LichSuThanhToan.svg" height="19">
+                                            Lịch sử thanh toán                                        </div>
+                                        <div class="item mr-2 " loaitracuu="hoadonDichVu">
+                                            <img class="mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Hoa Don.svg" height="17">
+                                            Hóa đơn dịch vụ                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="tab-hoaDonTienTien">
+                                    <div class="module-hoaDonTienDien">
+        <script>
+function onMyFrameLoad(iframe){
+    $('#modalChonXemHoaDon .loadingIframe').css('display','none');
+    $('#modalChonXemHoaDon .banthehien_hoadon').css('display','inherit');
+}
+</script>
+<div id="modalChonXemHoaDon" class="modal face" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-size-lg " role="document">
+        <div class="modal-content">
+            <div class="modal-header pt-4">
+                <div class="d-flex align-items-center">
+                    <div class="tools-tab d-flex align-items-center ">
+                        <div class="item tab-hoadon f-size-17 Roboto" tt="0" idhd="" makh="">HÓA ĐƠN ĐIỆN TỬ</div>
+                        <div class="item tab-giaybao f-size-17 Roboto" tt="1" idhd="" makh="">GIẤY THÔNG BÁO</div>
+                        <div class="item tab-hoadon-chitiet f-size-17 Roboto" tt="2" idhd="" makh="">BẢN CHI TIẾT</div>
+                    </div>
+                    <div class="ml-auto mr-4 cursor-pointer download-on-view p-2" idhd="" makh="" title="Tải về">
+                        <img class="ml-3 mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="18">
+                        <span class="ml-1 f-w-500 f-size-14 color-blue">TẢI VỀ</span>
+                    </div>
+
+                    <div class="mr-4 print-hoadon cursor-pointer p-2">
+                        <i class="fas fa-print color-blue f-size-16"></i>
+                        <span class="ml-1 f-w-500 f-size-14 color-blue">PRINT</span>
+                    </div>
+                </div>
+                <div class="close" data-dismiss="modal" aria-label="Close"></div>
+            </div>
+            <div class="modal-body pt-2">
+                                    <div class="loadingIframe" style="display: none;"><div class="d-flex align-items-center justify-content-center mt-5 mb-5"><div class="loader"></div></div></div>
+                    <iframe class="banthehien_hoadon" id="printf" name="printf" width="100%" height="700px" onload="onMyFrameLoad(this)" style="display: inherit;"></iframe>
+                                </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalDownLoadHoaDon" class="modal face" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog modal-size-default modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header pt-4">
+                    <div class="modal-title">CHỌN PHIÊN BẢN TẢI VỀ</div>
+                    <div class="close" data-dismiss="modal" aria-label="Close"></div>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex btn-download-HDDT cursor-pointer" makh="" idhd="" loaihd="PDF-ChiTiet" title="Tải về">
+                        <div class="align-self-center">
+                            <img class="align-self-center" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_MaPE With shadow.svg" height="60" width="50">    
+                            <span class="f-w-500 f-size-14">BẢN CHI TIẾT (.PDF)</span>
+                        </div>
+                        <div class="ml-auto align-self-center">
+                            <img class="mr-1 mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="20">   
+                            <span class="f-w-500 f-size-14 color-blue">Tải về </span>
+                        </div>
+                    </div>
+                    <div class="d-flex btn-download-HDDT cursor-pointer mt-2" makh="" idhd="" loaihd="PDF" title="Tải về">
+                        <div class="align-self-center">
+                            <img class="align-self-center" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_MaPE With shadow.svg" height="60" width="50">    
+                            <span class="f-w-500 f-size-14">BẢN THỂ HIỆN (.PDF)</span>
+                        </div>
+                        <div class="ml-auto align-self-center">
+                            <img class="mr-1 mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="20">   
+                            <span class="f-w-500 f-size-14 color-blue">Tải về </span>
+                        </div>
+                    </div>
+                    <div class="d-flex btn-download-HDDT cursor-pointer  mt-2" makh="" idhd="" loaihd="XML" title="Tải về">
+                        <div class="align-self-center">
+                            <img class="align-self-center" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_MaPE With shadow.svg" height="60" width="50">
+                            <span class="f-w-500 f-size-14">HÓA ĐƠN (.XML)</span>
+                        </div>
+                        <div class="ml-auto align-self-center">
+                            <img class="mr-1 mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="20">   
+                            <span class="f-w-500 f-size-14 color-blue">Tải về </span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    $(document).ready(function(){
+        $$.loading('#modalChonXemHoaDon .loadingIframe');
+
+        $('#modalChonXemHoaDon .print-hoadon').click(function(){
+            printHD();
+        });
+
+        $('#modalChonXemHoaDon .download-on-view').click(function(){
+            if($('#modalChonXemHoaDon .tools-tab .tab-giaybao').hasClass('active')){
+                downLoadGiayBao($(this).attr('idhd'),$(this).attr('makh'),$(this).attr('ma_dviqly'));
+            }else{
+                openModalDownLoadHoaDon($(this).attr('idhd'),$(this).attr('makh'),$(this).attr('ma_dviqly'));
+            }
+        });
+    });
+
+    $('#modalChonXemHoaDon .tools-tab .item').click(function(){
+        if( !$(this).hasClass('active') ){
+            $('#modalChonXemHoaDon .tools-tab .item').removeClass('active');
+            $('#modalChonXemHoaDon .tools-tab .item').removeClass('color-red');
+            $(this).addClass('active');
+            $(this).addClass('color-red');
+
+            let tt =  $(this).attr('tt');
+            let idhd =  $(this).attr('idhd');
+            let makh =  $(this).attr('makh');
+            let ma_dviqly =  $(this).attr('ma_dviqly');
+            loadHDDT(idhd,tt, ma_dviqly,makh);
+        }
+    });
+
+    function printHD()
+    {
+        window.frames["printf"].focus();
+        window.frames["printf"].print();
+    }
+
+</script>        <div class="row form-input-makh mt-3 ">
+            <div class="col-12 col-md-6">
+                <div class="form-group group-input-maKH">
+                    <label for="input-maKH">Mã khách hàng</label>
+                    <div class="has-iconInput iconRight">
+                        <input type="text" class="form-control f-w-normal f-size-14 input-maKH openChonMaKH" placeholder="PE" readonly="">
+                        <i class="fas fa-chevron-down f-size-12 color-deep-grey icon cursor-pointer openChonMaKH"></i>
+                    </div>
+                    <div class="invalid-feedback pt-1">Vui lòng điền thông tin</div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 align-items-center d-flex">
+                <div class="thongTin_maKH_dangchon w-100">
+                    <div class="ten f-w-500 f-size-14 color-deep-blue">CÔNG TY CỔ PHẦN CƠ KHÍ XÂY DỰNG THƯƠNG MẠI ĐẠI DŨNG</div>
+                    <div class="diachi color-black f-w-normal">Lô Số 38 khu C đường D1 khu công nghiệp An Hạ Xã Tân Vĩnh Lộc Thành phố Hồ Chí Minh Việt Nam</div>
+                </div>
+            </div>
+        </div>
+        <div class="row group-btn-tracuu" style="display: none;">
+            <div class="col-12 ">
+                <button type="button" class="btn btn-red size-md border-r-4 pl-3 pr-3 btn-tracuu">
+                    <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                    </svg>
+                    Tra cứu thông tin                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 chuThichHoaDon mt-3">
+                <span class="f-size-13 f-w-bold font-italic mr-2">Chú thích:</span>
+                <img src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16">
+                <span class="f-size-13 font-italic mr-2">Đã thanh toán</span>
+                <img src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Payment.svg" height="16">
+                <span class="f-size-13 font-italic">Cần thanh toán</span>
+            </div>
+        </div>
+        <div class="row justify-content-between  mt-3">
+            <div class="col-6 col-sm-4 col-md-6 col-lg-4">
+                <div class="form-group f-w-500">
+                    <select class="input-thang select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                        <option value="tatca" selected="" data-select2-id="3">Tất cả các tháng</option>
+                        <option value="1">Tháng 1</option><option value="2">Tháng 2</option><option value="3">Tháng 3</option><option value="4">Tháng 4</option><option value="5">Tháng 5</option><option value="6">Tháng 6</option><option value="7">Tháng 7</option><option value="8">Tháng 8</option><option value="9">Tháng 9</option><option value="10">Tháng 10</option><option value="11">Tháng 11</option><option value="12">Tháng 12</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-zrhp-container"><span class="select2-selection__rendered" id="select2-zrhp-container" role="textbox" aria-readonly="true" title="Tất cả các tháng">Tất cả các tháng</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-6 col-lg-4">
+                <div class="form-group f-w-500">
+                    <select class="input-nam select2-hidden-accessible" data-select2-id="4" tabindex="-1" aria-hidden="true">
+                        <option value="tatca" selected="" data-select2-id="6">Tất cả các năm</option>
+                        <option value="2026">Năm 2026</option><option value="2025">Năm 2025</option><option value="2024">Năm 2024</option><option value="2023">Năm 2023</option><option value="2022">Năm 2022</option><option value="2021">Năm 2021</option><option value="2020">Năm 2020</option><option value="2019">Năm 2019</option><option value="2018">Năm 2018</option><option value="2017">Năm 2017</option><option value="2016">Năm 2016</option><option value="2015">Năm 2015</option><option value="2014">Năm 2014</option><option value="2013">Năm 2013</option>                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="5" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-zy07-container"><span class="select2-selection__rendered" id="select2-zy07-container" role="textbox" aria-readonly="true" title="Tất cả các năm">Tất cả các năm</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- KET QUA -->
+        <div class="ketQuaTraCuu mt-0"><div class="table-responsive">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th class="color-deep-blue pb-1 pt-1">ID hoá đơn</th>
+                            <th class="color-deep-blue pb-1 pt-1 text-center">Số tiền</th>
+                            <th class="color-deep-blue pb-1 pt-1 text-center">Loại hóa đơn</th>
+                            <th class="color-deep-blue pb-1 pt-1" width="160">Tháng/Năm</th>
+                            <th class="color-deep-blue pb-1 pt-1" width="155">
+                                <p class="m-0">Giấy thông báo</p> <p class="m-0">và hóa đơn</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+            <td class="  text-nowrap">1593684158 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">76.053.044 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;70.419.485 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;5.633.559 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;76.053.044 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 3 - 06/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1593684158" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1593684158" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1593661948 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">99.037.119 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;91.701.036 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;7.336.083 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;99.037.119 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 2 - 06/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1593661948" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1593661948" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1593631537 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">100.754.862 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;93.291.539 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;7.463.323 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;100.754.862 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 1 - 06/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1593631537" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1593631537" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1589501933 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">113.216.244 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;104.829.856 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;8.386.388 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;113.216.244 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 3 - 05/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1589501933" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1589501933" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1589436310 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">133.017.764 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;123.164.596 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;9.853.168 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;133.017.764 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 2 - 05/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1589436310" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1589436310" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1589415389 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">106.978.552 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;99.054.215 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;7.924.337 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;106.978.552 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 1 - 05/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1589415389" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1589415389" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1585270767 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">126.712.162 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;117.326.076 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;9.386.086 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;126.712.162 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 3 - 04/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1585270767" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1585270767" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1585256551 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">105.469.504 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;97.656.948 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;7.812.556 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;105.469.504 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 2 - 04/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1585256551" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1585256551" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1585227252 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">128.489.233 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;118.971.512 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;9.517.721 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;128.489.233 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 1 - 04/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1585227252" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1585227252" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1581213727 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">144.413.218 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;133.715.943 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;10.697.275 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;144.413.218 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 3 - 03/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1581213727" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1581213727" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1581084044 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">145.341.375 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;134.575.347 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;10.766.028 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;145.341.375 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 2 - 03/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1581084044" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1581084044" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr><tr>
+            <td class="  text-nowrap">1581058894 <img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title="" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16" data-original-title="&lt;div class=&quot;color-green f-w-500&quot; &gt;Đã thanh toán&lt;/div&gt;"></td>
+            <td class="text-right align-middle d-flex justify-content-end ">147.402.358 VNĐ <i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg" data-toggle="tooltip" data-html="true" title="" data-original-title="&lt;div class=&quot;p-2&quot;&gt;
+        &lt;div class=&quot;color-deep-blue f-w-500 text-left mb-2&quot;&gt;CHI TIẾT&lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Số tiền&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;136.483.665 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;Tiền thuế&lt;/div&gt;
+            &lt;div class=&quot;f-w-500 f-size-12 color-black&quot;&gt;10.918.693 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;d-flex pt-2 border-top mt-2 border-color-grey justify-content-between&quot;&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-black&quot;&gt;TỔNG CỘNG&lt;/div&gt;
+            &lt;div class=&quot;f-w-bold f-size-12 color-red pl-2&quot;&gt;147.402.358 VNĐ&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;"></i></td>
+            <td class="text-center ">Tiền điện</td>
+            <td class="">Đợt 1 - 03/2026</td>
+            <td class="text-justify text-nowrap">
+                <a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="1581058894" trangthai="0" ma_dviqly="PE1500"><i class="fas fa-eye"></i>Xem ngay</a>
+                <img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="1581058894" ma_dviqly="PE1500" title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        <div class="row justify-content-center phantrang mt-3">
+            <!-- PHAN TRANG -->
+            <div class="pagination"><a class="back"><i class="fas fa-chevron-left"></i></a><a class="page-number active" num="1">1</a><a class="page-number " num="2">2</a><a class="page-number " num="3">3</a><a class="page-number " num="4">4</a><a class="page-number " num="5">5</a><a class="page-number " num="6">6</a><a class="page-number " num="7">7</a><div class="ml-2 mr-2">...</div><a class="next page-number" num="2"><i class="fas fa-chevron-right"></i></a></div>
+            <!-- // PHAN TRANG -->
+        </div>
+        <!-- // KET QUA -->
+    </div>
+    <script>
+        let div_module_tiendien = ".module-hoaDonTienDien";
+        var listPE = [{"MA_KHANG":"PE15000352029","TEN_KHANG":"C\u00d4NG TY C\u1ed4 PH\u1ea6N C\u01a0 KH\u00cd X\u00c2Y D\u1ef0NG TH\u01af\u01a0NG M\u1ea0I \u0110\u1ea0I D\u0168NG","DIA_CHI":"L\u00f4 S\u1ed1 38 khu C \u0111\u01b0\u1eddng D1 khu c\u00f4ng nghi\u1ec7p An H\u1ea1 X\u00e3 T\u00e2n V\u0129nh L\u1ed9c Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh Vi\u1ec7t Nam","MA_DVIQLY":"PE1500","isChinhChu":0,"isShare":0},{"MA_KHANG":"PE15000352030","TEN_KHANG":"C\u00d4NG TY C\u1ed4 PH\u1ea6N C\u01a0 KH\u00cd X\u00c2Y D\u1ef0NG TH\u01af\u01a0NG M\u1ea0I \u0110\u1ea0I D\u0168NG","DIA_CHI":"L\u00f4 S\u1ed1 38 khu C \u0111\u01b0\u1eddng D1 khu C\u00f4ng Nghi\u1ec7p An H\u1ea1 X\u00e3 T\u00e2n V\u0129nh L\u1ed9c Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh Vi\u1ec7t Nam","MA_DVIQLY":"PE1500","isChinhChu":0,"isShare":0},{"MA_KHANG":"PE15000347831","TEN_KHANG":"C\u00d4NG TY TNHH POWER TH\u0102NG LONG","DIA_CHI":"L\u00f4 S\u1ed1 38 khu C \u0111\u01b0\u1eddng D1 khu c\u00f4ng nghi\u1ec7p An H\u1ea1 X\u00e3 T\u00e2n V\u0129nh L\u1ed9c Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh Vi\u1ec7t Nam","MA_DVIQLY":"PE1500","isChinhChu":0,"isShare":0},{"MA_KHANG":"PE15000338879","TEN_KHANG":"C\u00d4NG TY C\u1ed4 PH\u1ea6N C\u01a0 KH\u00cd X\u00c2Y D\u1ef0NG TH\u01af\u01a0NG M\u1ea0I \u0110\u1ea0I D\u0168NG","DIA_CHI":"L\u00f4 S\u1ed1 38 khu C \u0111\u01b0\u1eddng D1 khu c\u00f4ng nghi\u1ec7p An H\u1ea1 X\u00e3 T\u00e2n V\u0129nh L\u1ed9c Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh Vi\u1ec7t Nam","MA_DVIQLY":"PE1500","isChinhChu":0,"isShare":0},{"MA_KHANG":"PE15000403683","TEN_KHANG":"C\u00d4NG TY C\u1ed4 PH\u1ea6N C\u01a0 KH\u00cd X\u00c2Y D\u1ef0NG TH\u01af\u01a0NG M\u1ea0I \u0110\u1ea0I D\u0168NG","DIA_CHI":"L\u00f4 S\u1ed1 38 khu C \u0111\u01b0\u1eddng D1 khu C\u00f4ng Nghi\u1ec7p An H\u1ea1 X\u00e3 T\u00e2n V\u0129nh L\u1ed9c Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh Vi\u1ec7t Nam","MA_DVIQLY":"PE1500","isChinhChu":0,"isShare":0},{"MA_KHANG":"PE15000352028","TEN_KHANG":"C\u00d4NG TY TNHH C\u01a0 KH\u00cd - X\u00c2Y D\u1ef0NG - TH\u01af\u01a0NG M\u1ea0I TR\u01af\u1edcNG PH\u00daC","DIA_CHI":"L\u00f4 S\u1ed1 36 khu C \u0111\u01b0\u1eddng D1 khu C\u00f4ng Nghi\u1ec7p An H\u1ea1 X\u00e3 T\u00e2n V\u0129nh L\u1ed9c Th\u00e0nh ph\u1ed1 H\u1ed3 Ch\u00ed Minh Vi\u1ec7t Nam","MA_DVIQLY":"PE1500","isChinhChu":0,"isShare":0}];
+
+        $(document).ready(function() {
+            $(div_module_tiendien + ' .input-maKH').on('keyup', function(e) {
+                var keyCode = e.keyCode || e.which;
+                if (keyCode === 13) {
+                    e.preventDefault();
+                    return false;
+                }
+                $(this).parents('.form-group').removeClass('has-error');
+            });
+
+            $(div_module_tiendien + ' .openChonMaKH').click(function() {
+                $$.openModalChonMaKH(form + ' .input-maKH', function(info) {
+                    $(div_module_tiendien + ' .thongTin_maKH_dangchon .ten').html(info.TEN_KHANG);
+                    $(div_module_tiendien + ' .thongTin_maKH_dangchon .diachi').html(info.DIA_CHI);
+                    $(div_module_tiendien + ' .btn-tracuu').trigger('click');
+                });
+            });
+
+            $(div_module_tiendien + ' select').select2({
+                width: '100%'
+            });
+
+            $(div_module_tiendien + ' .btn-tracuu').click(function() {
+                $(div_module_tiendien + ' .ketQuaTraCuu').html("");
+                $(div_module_tiendien + ' .phantrang .pagination').html("");
+                if (validate_inform_tracuu_HoaDon() == true) {
+                    // if($('#captcha_lichcatdien').html()==""){
+                    //     window.id_captcha_lichcatdien = grecaptcha.render('captcha_tracuu', {
+                    //         'sitekey': '//',
+                    //         'theme': 'light',
+                    //         'size': 'invisible',
+                    //         callback: traCuuHoaDon,
+                    //     });
+                    // }
+                    // window.grecaptcha.execute(window.id_captcha_lichcatdien);
+
+                    // ko dùng capcha
+                    traCuuHoaDonTienDien("");
+                }
+            });
+
+            $$.selectDefautMaKH(div_module_tiendien + ' .input-maKH', function(info) {
+                $(div_module_tiendien + ' .thongTin_maKH_dangchon .ten').html(info.TEN_KHANG);
+                $(div_module_tiendien + ' .thongTin_maKH_dangchon .diachi').html(info.DIA_CHI);
+                $(div_module_tiendien + ' .btn-tracuu').trigger('click');
+            });
+
+
+            $(div_module_tiendien + ' select').on('select2:select', function(e) {
+                $(div_module_tiendien + ' .btn-tracuu').trigger('click');
+            });
+
+            $(div_module_tiendien + ' .btn-download-HDDT').click(function() {
+                let idhd = $(this).attr('idhd');
+                let makh = $(this).attr('makh');
+                let ma_dviqly = $(this).attr('ma_dviqly');
+                let loaihd = $(this).attr('loaihd');
+                downLoadHDDT(idhd, makh, loaihd, ma_dviqly);
+            });
+        });
+
+        function validate_inform_tracuu_HoaDon() {
+            let res = true;
+            var input_makh = $(div_module_tiendien + ' .input-maKH').val().trim();
+            $(div_module_tiendien + ' .input-maKH').parents(".form-group").removeClass("has-error");
+            if (input_makh == "") {
+                $(div_module_tiendien + ' .input-maKH').parents(".form-group").addClass("has-error").removeClass("has-success");
+                $(div_module_tiendien + ' .input-maKH').parents(".form-group").children(".invalid-feedback").html("Vui lòng nhập mã khách hàng !");
+                res = false;
+            }
+            return res;
+        }
+
+        function getMaDviQLY(maKhang) {
+            let item = listPE.find(item => item.MA_KHANG === maKhang);
+            return item ? item.MA_DVIQLY : '';
+        }
+
+        function traCuuHoaDonTienDien(token, page) {
+            let input_makh = $(div_module_tiendien + ' .input-maKH').val().trim();
+            let input_thang = $(div_module_tiendien + ' .input-thang').val().trim();
+            let input_nam = $(div_module_tiendien + ' .input-nam').val().trim();
+            if (!page) {
+                page = 1;
+            };
+            $$.loading(div_module_tiendien + ' .ketQuaTraCuu');
+            var url = 'Tracuu/ajax_ds_hoadon';
+
+            let ma_dviqly = getMaDviQLY(input_makh);
+
+            $$.post(url, {
+                input_makh: input_makh,
+                input_thang: input_thang,
+                input_nam: input_nam,
+                token: token,
+                page: page,
+            }, function(res) {
+                // window.grecaptcha.reset(window.id_captcha_lichcatdien);
+                switch (res.state) {
+                    case 'success':
+                        let html_hoadon = "";
+                        if (res.data.ds_hoadon.length > 0) {
+                            for (i = 0; i < res.data.ds_hoadon.length; i++) {
+                                let hoadon = res.data.ds_hoadon[i];
+                                let btn_download = '';
+                                let btn_xem = '';
+                                let btn_dathanhtoan = '';
+                                let tooltip = `<div class="p-2">
+        <div class="color-deep-blue f-w-500 text-left mb-2">CHI TIẾT</div>
+        <div class="d-flex justify-content-between">
+            <div class="f-w-500 f-size-12 color-black">Số tiền</div>
+            <div class="f-w-500 f-size-12 color-black">` + hoadon.SO_TIEN + ` VNĐ</div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="f-w-500 f-size-12 color-black">Tiền thuế</div>
+            <div class="f-w-500 f-size-12 color-black">` + hoadon.TIEN_GTGT + ` VNĐ</div>
+        </div>
+        <div class="d-flex pt-2 border-top mt-2 border-color-grey justify-content-between">
+            <div class="f-w-bold f-size-12 color-black">TỔNG CỘNG</div>
+            <div class="f-w-bold f-size-12 color-red pl-2">` + hoadon.TONG_TIEN + ` VNĐ</div>
+        </div>
+        </div>`;
+
+                                let btn_info = `<i class="ml-1 icon-info-circle icon-size-15 cursor-pointer" src="https://www.evnhcmc.vn/public/images/icons/info.svg"
+            data-toggle="tooltip" data-html="true" title='` + tooltip + `'></i>`;
+                                // trang thai thanh toan
+                                if (hoadon.LOAI_DCHINH == 'HB') {
+                                    btn_dathanhtoan = `<i class='fas fa-times-circle color-grey f-size-16 ml-2' data-toggle="tooltip" data-html="true" title='<div class="color-deep-grey f-w-500" >Đã hủy</div>'></i>`;
+                                } else {
+                                    if (hoadon.TRANGTHAI <= 0) {
+                                        btn_dathanhtoan = `<img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title='<div class="color-green f-w-500" >Đã thanh toán</div>'
+            src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Tick.svg" height="16">`;
+                                    } else {
+                                        if (hoadon.TRANGTHAI > 0) {
+                                            btn_dathanhtoan = `<img class="ml-2 mt--2" data-toggle="tooltip" data-html="true" title='<div class="color-orange f-w-500" >Cần thanh toán</div>'
+            src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_HD_Payment.svg" height="16">`;
+                                        } else {
+                                            btn_dathanhtoan = ``;
+                                        }
+                                    }
+                                }
+
+                                // nút xem và download
+                                if (hoadon.TRANGTHAI <= 0 && hoadon.LOAI_DCHINH != 'HB') {
+                                    btn_download = `<img class="ml-3 cursor-pointer btn-download-hd" id_hoadon="` + hoadon.ID_HOADON + `" ma_dviqly='${ma_dviqly}' title="Tải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16">`;
+                                }
+
+                                if (hoadon.LOAI_HDON != 'HB') {
+                                    btn_xem = `<a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="` + hoadon.ID_HOADON + `" trangthai="` + hoadon.TRANGTHAI + `" ma_dviqly="` + ma_dviqly + `"><i class="fas fa-eye"></i>Xem ngay</a>`;
+                                }
+
+                                let color = "";
+                                if (hoadon.LOAI_DCHINH == 'HB') {
+                                    color = "color-deep-grey";
+                                } else if (hoadon.TONG_TIEN_INT < 0) {
+                                    color = "color-orange";
+                                }
+
+                                let tenKyHoaDon = "";
+                                if (hoadon.isBaKyHoaDon == 0) {
+                                    tenKyHoaDon = 'Tháng ' + hoadon.THANG + '/' + hoadon.NAM;
+                                } else {
+                                    tenKyHoaDon = 'Đợt ' + hoadon.KY + ' - ' + hoadon.THANG + '/' + hoadon.NAM;
+                                }
+                                html_hoadon += `<tr>
+            <td class="` + color + `  text-nowrap">` + hoadon.ID_HOADON + ' ' + btn_dathanhtoan + `</td>
+            <td class="text-right align-middle d-flex justify-content-end ` + color + `">` + hoadon.TONG_TIEN + ` VNĐ ` + btn_info + `</td>
+            <td class="text-center ` + color + `">` + hoadon.TEN_LOAIHD + `</td>
+            <td class="` + color + `">` + tenKyHoaDon + `</td>
+            <td class="text-justify text-nowrap">
+                ` + btn_xem + `
+                ` + btn_download + `
+            </td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="6"></td>
+            </tr>`;
+                            }
+                        } else {
+                            html_hoadon = `
+            <tr>
+                <td colspan="5" class="text-center">Không tìm thấy thông tin hóa đơn</td>
+            </tr>
+            <tr class="spacer">
+                <td colspan="5"></td>
+            </tr>
+            `;
+                        }
+
+                        let ketqua = `<div class="table-responsive">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th class="color-deep-blue pb-1 pt-1">ID hoá đơn</th>
+                            <th class="color-deep-blue pb-1 pt-1 text-center">Số tiền</th>
+                            <th class="color-deep-blue pb-1 pt-1 text-center">Loại hóa đơn</th>
+                            <th class="color-deep-blue pb-1 pt-1" width="160">Tháng/Năm</th>
+                            <th class="color-deep-blue pb-1 pt-1" width="155">
+                                <p class="m-0">Giấy thông báo</p> <p class='m-0'>và hóa đơn</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ` + html_hoadon + `
+                    </tbody>
+                </table>
+            </div>
+            `;
+                        $(div_module_tiendien + ' .ketQuaTraCuu').html(ketqua);
+
+
+                        $$.render_pageNum_AJAX(div_module_tiendien + ' .phantrang .pagination', res.data.tongSoTrang, res.data.trangHienTai, function(num) {
+
+                            traCuuHoaDonTienDien('', num);
+                        }, 9);
+
+                        $(div_module_tiendien + ' .open_chonxemhoadon').off('click');
+                        $(div_module_tiendien + ' .open_chonxemhoadon').click(function() {
+                            openModdalXemHoaDon($(this).attr('id_hoadon'), $(this).attr('trangthai'), $(this).attr('ma_dviqly'), input_makh);
+                        });
+
+                        $(div_module_tiendien + ' .btn-download-hd').off('click');
+                        $(div_module_tiendien + ' .btn-download-hd').click(function() {
+                            openModalDownLoadHoaDon($(this).attr('id_hoadon'), input_makh, $(this).attr('ma_dviqly'));
+                        });
+
+                        $(div_module_tiendien + ' [data-toggle="tooltip"]').tooltip();
+                        break;
+                    case 'error_makh':
+                        $(div_module_tiendien + ' .input-maKH').parents(".form-group").addClass("has-error").removeClass("has-success");
+                        $(div_module_tiendien + ' .input-maKH').parents(".form-group").children(".invalid-feedback").html(res.alert);
+                        $(div_module_tiendien + ' .ketQuaTraCuu').html("");
+                        break;
+                    case 'error_ma_kh_deny':
+                        $$.load_error_permission_maKH(div_module_tiendien + ' .ketQuaTraCuu', res.alert);
+                        break;
+                    case 'error_login':
+                        $$.load_error_login(div_module_tiendien + ' .ketQuaTraCuu');
+                        break;
+                    case 'error_null':
+                        $$.load_error_tracuu(div_module_tiendien + ' .ketQuaTraCuu', res.alert);
+                        break;
+                    default:
+                        $$.load_error_tracuu(div_module_tiendien + ' .ketQuaTraCuu');
+                        break;
+                }
+
+            }, function() {
+                $$.load_error_tracuu(div_module_tiendien + ' .ketQuaTraCuu');
+            });
+        }
+
+        function openModdalXemHoaDon(id_hoadon, trangthai, ma_dviqly, ma_kh) {
+            $(div_module_tiendien + ' #modalChonXemHoaDon').modal('show');
+            $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item').removeClass('active');
+            $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item').removeClass('color-red');
+            if (trangthai == 0) {
+                $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item.tab-hoadon').addClass('active');
+                $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item.tab-hoadon').addClass('color-red');
+                $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item.tab-hoadon').removeClass('d-none');
+            } else {
+                $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item.tab-hoadon').addClass('d-none');
+                $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item.tab-giaybao').addClass('active');
+                $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item.tab-giaybao').addClass('color-red');
+            }
+
+            $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item').attr('makh', ma_kh);
+            $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item').attr('idhd', id_hoadon);
+            $(div_module_tiendien + ' #modalChonXemHoaDon .tools-tab .item').attr('ma_dviqly', ma_dviqly);
+
+            $(div_module_tiendien + ' #modalChonXemHoaDon .download-on-view').attr('makh', ma_kh);
+            $(div_module_tiendien + ' #modalChonXemHoaDon .download-on-view').attr('idhd', id_hoadon);
+            $(div_module_tiendien + ' #modalChonXemHoaDon .download-on-view').attr('ma_dviqly', ma_dviqly);
+
+            loadHDDT(id_hoadon, trangthai, ma_dviqly, ma_kh);
+        }
+
+        function loadHDDT(id_hoadon, trangthai, ma_dviqly, ma_kh) {
+            let url = BASE_URL + 'Tracuu/ajax_xem_hoadon?makh=' + ma_kh + '&idhd=' + id_hoadon + '&ma_dviqly=' + ma_dviqly + '&tt=' + trangthai;
+            $(div_module_tiendien + ' #modalChonXemHoaDon .loadingIframe').css('display', 'block');
+            $(div_module_tiendien + ' #modalChonXemHoaDon .banthehien_hoadon').css('display', 'none');
+            $(div_module_tiendien + ' #modalChonXemHoaDon iframe.banthehien_hoadon').attr('src', url);
+        }
+
+        function openModalDownLoadHoaDon(id_hoadon, ma_kh, ma_dviqly) {
+            const modal = div_module_tiendien + " #modalDownLoadHoaDon";
+            $(modal).modal('show');
+            $(modal + ' .btn-download-HDDT').attr('makh', ma_kh);
+            $(modal + ' .btn-download-HDDT').attr('idhd', id_hoadon);
+            $(modal + ' .btn-download-HDDT').attr('ma_dviqly', ma_dviqly);
+        }
+
+        function downLoadHDDT(idhd, makh, loaihd, ma_dviqly) {
+            let url = BASE_URL + 'Tracuu/ajax_tai_hoadon';
+            $.redirect(url, {
+                    idhd: idhd,
+                    makh: makh,
+                    ma_dviqly: ma_dviqly,
+                    loaihd: loaihd,
+                },
+                "POST", "", "", false);
+        }
+
+        function downLoadGiayBao(idhd, makh, ma_dviqly) {
+            let url = BASE_URL + 'Tracuu/ajax_tai_giaybao';
+            $.redirect(url, {
+                    idhd: idhd,
+                    makh: makh,
+                    ma_dviqly: ma_dviqly,
+                },
+                "POST", "", "", false);
+        }
+    </script>
+                            </div>
+                            <div class="tab-lichSuThanhToan" style="display: none;">
+                                <div class="module-lichSuThanhToan">
+    <div class="row form-input-makh mt-3 ">
+        <div class="col-12 col-md-6">
+            <div class="form-group group-input-maKH">
+                <label for="input-maKH">Mã khách hàng</label>
+                <div class="has-iconInput iconRight">
+                    <input type="text" class="form-control f-w-normal f-size-14 input-maKH openChonMaKH" id="input-maKH" placeholder="PE" readonly="">
+                    <i class="fas fa-chevron-down f-size-12 color-deep-grey icon cursor-pointer openChonMaKH"></i>
+                </div>
+                <div class="invalid-feedback pt-1">Vui lòng điền thông tin</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 align-items-center d-flex">
+            <div class="thongTin_maKH_dangchon w-100">
+                <div class="ten f-w-500 f-size-14 color-deep-blue">CÔNG TY CỔ PHẦN CƠ KHÍ XÂY DỰNG THƯƠNG MẠI ĐẠI DŨNG</div>
+                <div class="diachi color-black f-w-normal">Lô Số 38 khu C đường D1 khu công nghiệp An Hạ Xã Tân Vĩnh Lộc Thành phố Hồ Chí Minh Việt Nam</div>
+            </div>
+        </div>
+    </div>
+    <div class="row group-btn-tracuu" style="display: none;">
+        <div class="col-12 ">
+            <button type="button" class="btn btn-red size-md border-r-4 pl-3 pr-3 btn-tracuu">
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                </svg>
+                Tra cứu thông tin            </button>
+        </div>
+    </div>
+
+    <!-- KET QUA -->
+    <div class="ketQuaTraCuu mt-3"></div>
+    <div class="row justify-content-center phantrang mt-3">
+        <!-- PHAN TRANG -->
+        <div class="pagination">
+        </div>
+        <!-- // PHAN TRANG -->
+    </div>
+    <!-- // KET QUA -->
+</div>
+<script>
+    let div_module_lichsuthanhtoan = ".module-lichSuThanhToan";
+    $(document).ready(function(){
+        $(div_module_lichsuthanhtoan+' .input-maKH').on('keyup',function(e){
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+            $(this).parents('.form-group').removeClass('has-error');
+        });
+
+        $(div_module_lichsuthanhtoan+ ' .openChonMaKH').click(function(){
+            $$.openModalChonMaKH(form+' .input-maKH',function(info){
+                $(div_module_lichsuthanhtoan +' .thongTin_maKH_dangchon .ten').html(info.TEN_KHANG);
+                $(div_module_lichsuthanhtoan +' .thongTin_maKH_dangchon .diachi').html(info.DIA_CHI);
+                $(div_module_lichsuthanhtoan + ' .btn-tracuu').trigger('click');
+            });
+        });
+
+        $(div_module_lichsuthanhtoan+' .btn-tracuu').click(function(){
+            $(div_module_lichsuthanhtoan+' .ketQuaTraCuu').html("");
+            $(div_module_lichsuthanhtoan+' .phantrang').html("");
+            if(validate_inform_tracuu_LichSuThanhToan()==true){
+                // if($('#captcha_lichcatdien').html()==""){
+                //     window.id_captcha_lichcatdien = grecaptcha.render('captcha_tracuu', {
+                //         'sitekey': '//',
+                //         'theme': 'light',
+                //         'size': 'invisible',
+                //         callback: traCuuHoaDon,
+                //     });
+                // }
+                // window.grecaptcha.execute(window.id_captcha_lichcatdien);
+
+                // ko dùng capcha
+                traCuuLichSuThanhToan("");
+            }
+        });
+
+        $$.selectDefautMaKH(div_module_lichsuthanhtoan+' .input-maKH',function(info){
+            $(div_module_lichsuthanhtoan +' .thongTin_maKH_dangchon .ten').html(info.TEN_KHANG);
+            $(div_module_lichsuthanhtoan +' .thongTin_maKH_dangchon .diachi').html(info.DIA_CHI);
+            // $(div_module_lichsuthanhtoan + ' .btn-tracuu').trigger('click');
+        });
+
+    });
+
+    function validate_inform_tracuu_LichSuThanhToan(){
+        let res = true;
+        var input_makh = $(div_module_lichsuthanhtoan+' .input-maKH').val().trim();
+        $(div_module_lichsuthanhtoan+' .input-maKH').parents( ".form-group" ).removeClass( "has-error" );
+        if(input_makh==""){
+            $(div_module_lichsuthanhtoan+' .input-maKH').parents( ".form-group" ).addClass( "has-error" ).removeClass( "has-success" );
+            $(div_module_lichsuthanhtoan+' .input-maKH').parents( ".form-group").children(".invalid-feedback").html("Vui lòng nhập mã khách hàng !");
+            res= false;
+        }
+        return res;
+    }
+
+    function traCuuLichSuThanhToan(token){
+        var input_makh = $(div_module_lichsuthanhtoan+' .input-maKH').val().trim();
+      
+        $$.loading(div_module_lichsuthanhtoan+' .ketQuaTraCuu');
+        var url=  'Tracuu/ajax_ds_lichSuThanhToan';
+        $$.post(url,{
+            input_makh: input_makh,
+            token: token,
+        },function(res){
+            //   window.grecaptcha.reset(window.id_captcha_lichcatdien);
+            switch(res.state){
+                case 'success':
+                    let html_thanhtoan = "";
+                    if(res.data.ds_hoadon.length>0){
+                        for(i=0;i<res.data.ds_hoadon.length;i++){
+                            let hoadon = res.data.ds_hoadon[i];
+                            html_thanhtoan +=`<tr>
+                                        <td >Trang chủĐợt `+hoadon.KY+` - `+hoadon.THANG+`/`+hoadon.NAM+`</td>
+                                        <td>`+hoadon.loaiHoaDon+`</td>
+                                        <td class="text-right">`+hoadon.tongTien+` VNĐ</td>
+                                        <td class="text-center">`+hoadon.ngayThu+`</td>
+                                        <td>`+hoadon.diemThu+`</td>
+                                    </tr>
+                                    <tr class="spacer"><td colspan="5"></td></tr>`;
+                        }
+                    }else{
+                        html_thanhtoan=`
+                                    <tr>
+                                        <td colspan="5" class="text-center" >Không tìm thấy thông tin thanh toán</td>
+                                    </tr>
+                                    <tr class="spacer"><td colspan="5"></td></tr>
+                                    `;
+                    }
+
+                    let ketqua = `<table class="table table-custom">
+                                <thead>
+                                    <tr>
+                                        <th class="color-deep-blue pb-1 pt-1">Đợt - Tháng/Năm</th>
+                                        <th class="color-deep-blue pb-1 pt-1">Loại hóa đơn</th>
+                                        <th class="color-deep-blue pb-1 pt-1 text-right">Số tiền</th>
+                                        <th class="color-deep-blue pb-1 pt-1 text-center">Ngày thanh toán</th>
+                                        <th class="color-deep-blue pb-1 pt-1">Điểm thu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    `+html_thanhtoan+`
+                                </tbody>
+                            </table>
+                    `;
+                    $(div_module_lichsuthanhtoan+' .ketQuaTraCuu').html(ketqua);
+                    $(div_module_lichsuthanhtoan+' .phantrang').html("");
+                break;
+                case 'error_makh': 
+                    $(div_module_lichsuthanhtoan+' .input-maKH').parents( ".form-group" ).addClass( "has-error" ).removeClass( "has-success" );
+                    $(div_module_lichsuthanhtoan+' .input-maKH').parents( ".form-group").children(".invalid-feedback").html(res.alert);
+                    $(div_module_lichsuthanhtoan+' .ketQuaTraCuu').html("");
+                break;
+                case 'error_ma_kh_deny':
+                    $$.load_error_permission_maKH(div_module_lichsuthanhtoan+' .ketQuaTraCuu',res.alert);
+                    break;
+                case 'error_login':{
+                    $$.load_error_login(div_module_lichsuthanhtoan+' .ketQuaTraCuu');
+                }
+                default:
+                    $$.load_error_tracuu(div_module_lichsuthanhtoan+' .ketQuaTraCuu');
+                break;
+            }
+            
+        },function(){
+            $$.load_error_tracuu(div_module_lichsuthanhtoan+' .ketQuaTraCuu');
+        });
+    }
+
+</script>
+                            </div>
+                            <div class="tab-hoaDonDichVu" style="display: none;">
+                                <div class="module-hoaDonDichVu">
+    <div id="modalChonXemHoaDonDichVu" class="modal face" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-size-lg " role="document">
+        <div class="modal-content">
+            <div class="modal-header pt-4">
+                <div class="d-flex align-items-center">
+                    <div class="tools-tab d-flex align-items-center ">
+                        <div class="item tab-hoadon f-size-17 Roboto" tt="0" idhd="" makh="">HÓA ĐƠN ĐIỆN TỬ</div>
+                    </div>
+                </div>
+                <div class="close" data-dismiss="modal" aria-label="Close"></div>
+            </div>
+            <div class="modal-body pt-2">
+                
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalDownLoadHoaDonDichVu" class="modal face" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-size-default modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header pt-4">
+                <div class="modal-title">CHỌN PHIÊN BẢN TẢI VỀ</div>
+                <div class="close" data-dismiss="modal" aria-label="Close"></div>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex btn-download-HDDT cursor-pointer" ma_tracuu="" loaihd="PDF" title="Tải về">
+                    <div class="align-self-center">
+                        <img class="align-self-center" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_MaPE With shadow.svg" height="60" width="50">    
+                        <span class="f-w-500 f-size-14">BẢN THỂ HIỆN (.PDF)</span>
+                    </div>
+                    <div class="ml-auto align-self-center">
+                        <img class="mr-1 mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="20">   
+                        <span class="f-w-500 f-size-14 color-blue">Tải về </span>
+                    </div>
+                </div>
+                <div class="d-flex btn-download-HDDT cursor-pointer  mt-2" ma_tracuu="" loaihd="XML" title="Tải về">
+                    <div class="align-self-center">
+                        <img class="align-self-center" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_MaPE With shadow.svg" height="60" width="50">
+                        <span class="f-w-500 f-size-14">HÓA ĐƠN (.XML)</span>
+                    </div>
+                    <div class="ml-auto align-self-center">
+                        <img class="mr-1 mt--2" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="20">   
+                        <span class="f-w-500 f-size-14 color-blue">Tải về </span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>    <div class="row form-input-maTraCuu  mt-3">
+        <div class="col-12 col-md-6">
+            <div class="form-group group-input-maTracuu">
+                <label for="input-maTraCuu">Mã tra cứu</label>
+                <input type="text" class="form-control f-w-normal f-size-14 input-maTraCuu" id="input-maTraCuu" placeholder="Nhập mã tra cứu">
+                <div class="invalid-feedback pt-1">Vui lòng điền thông tin</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row group-btn-tracuu ">
+        <div class="col-12 ">
+            <button type="button" class="btn btn-red size-md border-r-4 pl-3 pr-3 btn-tracuu">
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                </svg>    
+                Tra cứu thông tin            </button>
+        </div>
+    </div>
+    <div class="ketQuaTraCuu mt-3"></div>
+</div>
+
+<script>
+    let div_module_dichvu = ".module-hoaDonDichVu";
+    $(document).ready(function(){
+        $(form+' .btn-tracuu').click(function(){
+            $(div_module_dichvu+' .ketQuaTraCuu').html("");
+            $(div_module_dichvu+' .phantrang').html("");
+            if(validate_inform_tracuu_HoaDonDichVu()==true){
+                // if($('#captcha_lichcatdien').html()==""){
+                //     window.id_captcha_lichcatdien = grecaptcha.render('captcha_tracuu', {
+                //         'sitekey': '//',
+                //         'theme': 'light',
+                //         'size': 'invisible',
+                //         callback: traCuuHoaDon,
+                //     });
+                // }
+                // window.grecaptcha.execute(window.id_captcha_lichcatdien);
+
+                // ko dùng capcha
+                traCuuHoaDonDichVu("");
+            }
+        });   
+
+        $(div_module_dichvu+' #modalDownLoadHoaDonDichVu .btn-download-HDDT').click(function(){
+            let ma_tracuu = $(this).attr('ma_tracuu');
+            let loaihd = $(this).attr('loaihd');
+            downLoadHDDT_DichVu(ma_tracuu,loaihd);
+        });
+    });
+
+    function validate_inform_tracuu_HoaDonDichVu(){
+        let res = true;
+        var input_maTraCuu = $(div_module_dichvu+' .input-maTraCuu').val().trim();
+        $(div_module_dichvu+' .input-maTraCuu').parents( ".form-group" ).removeClass( "has-error" );
+        if(input_maTraCuu==""){
+            $(div_module_dichvu+' .input-maTraCuu').parents( ".form-group" ).addClass( "has-error" ).removeClass( "has-success" );
+            $(div_module_dichvu+' .input-maTraCuu').parents( ".form-group").children(".invalid-feedback").html("Vui lòng nhập mã tra cứu!");
+            res= false;
+        }
+        return res;
+    }
+
+    function traCuuHoaDonDichVu(token){
+        var input_maTraCuu = $(div_module_dichvu+' .input-maTraCuu').val().trim();
+      
+        $$.loading(div_module_dichvu+' .ketQuaTraCuu');
+        var url=  'Tracuu/ajax_hoadondichvu_result';
+        $$.post(url,{
+            input_matracuu: input_maTraCuu,
+            token: token,
+        },function(res){
+            //   window.grecaptcha.reset(window.id_captcha_lichcatdien);
+            switch(res.state){
+                case 'success':
+                    let html_hoadon = "";
+                    if(res.data.ds_hoadon.length>0){
+                        
+                        for(i=0;i<res.data.ds_hoadon.length;i++){
+                            let hoadon = res.data.ds_hoadon[i];
+                            let btn_download='';
+                            let btn_xem='';
+                            btn_xem = `<a class="color-blue cursor-pointer open_chonxemhoadon" id_hoadon="`+hoadon.ID_HOADON+`" trangthai="`+hoadon.TRANGTHAI+`"><i class="fas fa-eye"></i>
+                            Xem ngay</a> `;
+
+                            btn_download = `<img class="ml-3 cursor-pointer btn-download-hd"  id_hoadon="`+hoadon.ID_HOADON+`" title="Trang chủTải về" src="https://www.evnhcmc.vn/public/images/icons/EVN Icon Pack_Download .svg" height="16" >`;
+                            html_hoadon +=`<tr>
+                                        <td >`+hoadon.MATRACUU+`</td>
+                                        <td>`+hoadon.KYHIEU+`</td>
+                                        <td class="text-right">`+hoadon.NGAYHDON+`</td>
+                                        <td class="text-right">`+hoadon.TONGTIEN_FORMAT+` VNĐ</td>
+                                        <td class="text-center">`+btn_xem+`</td>
+                                        <td>`+btn_download+`</td>
+                                    </tr>
+                                    <tr class="spacer"><td colspan="6"></td></tr>`;
+                        }
+                    }else{
+                        html_hoadon=`
+                                    <tr>
+                                        <td colspan="6" class="text-center" >Không tìm thấy thông tin hóa đơn</td>
+                                    </tr>
+                                    <tr class="spacer"><td colspan="6"></td></tr>
+                                    `;
+                    }
+
+                    let ketqua = `<table class="table table-custom">
+                                <thead>
+                                    <tr>
+                                        <th class="color-deep-blue pb-1 pt-1">Mã tra cứu</th>
+                                        <th class="color-deep-blue pb-1 pt-1">Ký hiệu</th>
+                                        <th class="color-deep-blue pb-1 pt-1 text-center">Ngày</th>
+                                        <th class="color-deep-blue pb-1 pt-1 text-center">Số tiền</th>
+                                        <th class="color-deep-blue pb-1 pt-1">Xem hóa đơn</th>
+                                        <th class="color-deep-blue pb-1 pt-1">Tải về</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    `+html_hoadon+`
+                                </tbody>
+                            </table>
+                    `;
+                    $(div_module_dichvu+' .ketQuaTraCuu').html(ketqua);
+                    $(div_module_dichvu+' .phantrang').html("");
+
+                    $(div_module_dichvu+' .open_chonxemhoadon').off('click');
+                    $(div_module_dichvu+' .open_chonxemhoadon').click(function(){
+                        openModdalXemHoaDon_DichVu(input_maTraCuu);
+                    });
+
+                    $(div_module_dichvu+' .btn-download-hd').off('click');
+                    $(div_module_dichvu+' .btn-download-hd').click(function(){
+                        openModalDownLoadHoaDon_DichVu(input_maTraCuu);
+                    });
+            
+                break;
+                case 'nodata':
+                    $(div_module_dichvu+' .ketQuaTraCuu').html('<div class="color-red mb-4 mt-2" >Không tìm thấy hóa đơn dịch vụ</div>');
+                break;
+                default:
+                    $$.load_error_tracuu(div_module_dichvu+' .ketQuaTraCuu');
+                break;
+            }
+            
+        },function(){
+            $$.load_error_tracuu(div_module_dichvu+' .ketQuaTraCuu');
+        });
+    }
+
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+    function openModdalXemHoaDon_DichVu(input_matracuu) {
+        // mở popup
+        if (isMobile.any()) {
+            // alert('Mobile');
+            var url = "https://www.evnhcmc.vn/ViewerJS/?title=Hồ sơ#../tracuu/get_file_hoadondichvu/Hóa đơn" + '?input_matracuu=' + input_matracuu + "&.pdf";
+
+            var tmp = "<div class=\"col-xs-12 div_hoso\" style='padding: 0px'>\n" +
+                "                    <iframe title='abc' style='border-width: 0px' src = \"" + url + "\" width='100%' height='800' allowfullscreen webkitallowfullscreen></iframe>" +
+                "                </div>" +
+                "<div class=\"clear_both\"></div>";
+        } else {
+            var url = "https://www.evnhcmc.vn/tracuu/get_file_hoadondichvu/" + input_matracuu+'?input_matracuu=' + input_matracuu + "";
+
+
+            var tmp = "<div class=\"col-xs-12 div_hoso\" style='padding: 0px'>\n" +
+                "                    <iframe title='abc' style='border-width: 0px' src = \"" + url + "\" width='100%' height='800' ></iframe>" +
+                "</div>" +
+                "<div class=\"clear_both\"></div>";
+        }
+
+        // $('.result_tracuuhoadon').html("");
+        $(div_module_dichvu+' #modalChonXemHoaDonDichVu .modal-body').html("");
+        $(div_module_dichvu+' #modalChonXemHoaDonDichVu').modal('show');
+        $(div_module_dichvu+' #modalChonXemHoaDonDichVu .modal-body').html(tmp);
+
+        // setTimeout(function () {
+        //     window.grecaptcha.reset(window.id_captcha_hoadondichvu);
+        // },3000);
+
+    }
+    
+    function openModalDownLoadHoaDon_DichVu(input_matracuu){
+        const modal = div_module_dichvu+" #modalDownLoadHoaDonDichVu";
+        $(modal).modal('show');
+        $(modal + ' .btn-download-HDDT').attr('ma_tracuu',input_matracuu);
+    }
+
+    function downLoadHDDT_DichVu(ma_tracuu,loaihd){
+        let url = "";
+        switch(loaihd){
+            case 'PDF': default :
+                url= BASE_URL+ 'Tracuu/get_file_hoadondichvu';
+                break;
+            case 'XML': 
+                url= BASE_URL+ 'Tracuu/get_filexml_hoadondichvu';
+                break;
+        }
+        
+        $.redirect(url,
+        {
+            input_matracuu : ma_tracuu,
+        },
+        "GET","_blank","",false);
+    }
+</script>                            </div>
+            
+                        </form>

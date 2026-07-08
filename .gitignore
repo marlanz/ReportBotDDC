@@ -67,3 +67,5 @@ output_bill/
 raw_bill/
 
 hoa_don_export.xlsx
+
+customer_codes.json
