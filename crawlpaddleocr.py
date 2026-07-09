@@ -36,8 +36,8 @@ MODEL = os.getenv("PADDLEOCR_MODEL").strip()
 # DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./raw_bill/hoa_don_ki_3_t6")
 # DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don__ki3_t6_output.json")
 
-DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./ah_raw_bill")
-DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don_t6_ah_output.json")
+DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./la_raw_bill/2026_06")
+DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don_t6_la_output.json")
 
 
 POLL_INTERVAL_SEC = 5      # giây giữa các lần poll
@@ -214,6 +214,55 @@ def ocr_pdf(pdf_path: str) -> str:
     """Toàn bộ quy trình OCR một file PDF → trả về markdown string."""
     job_id = submit_pdf_job(pdf_path)
     result_url = poll_job(job_id)
+    return download_markdown(result_url)
+
+
+def submit_image_job(img_bytes: bytes, filename: str = "image.png") -> str:
+    """Gửi raw bytes của ảnh lên PaddleOCR API và trả về jobId."""
+    optional_payload = {
+        "useDocOrientationClassify": False,
+        "useDocUnwarping": False,
+        "useChartRecognition": False,
+    }
+    data = {
+        "model": MODEL,
+        "optionalPayload": json.dumps(optional_payload),
+    }
+    resp = requests.post(
+        JOB_URL,
+        headers=_build_headers(),
+        data=data,
+        files={"file": (filename, img_bytes, "image/png")},
+        timeout=60,
+    )
+    if resp.status_code != 200:
+        raise RuntimeError(f"PaddleOCR submit failed ({resp.status_code}): {resp.text[:300]}")
+    return resp.json()["data"]["jobId"]
+
+
+def _poll_job_fast(job_id: str) -> str:
+    """Poll nhanh (khoảng 0.5s/lần) cho đến khi ảnh nhỏ OCR xong."""
+    for _ in range(20):  # max 10s
+        resp = requests.get(f"{JOB_URL}/{job_id}", headers=_build_headers(), timeout=10)
+        if resp.status_code != 200:
+            raise RuntimeError(f"Poll failed ({resp.status_code}): {resp.text[:200]}")
+        data = resp.json()["data"]
+        state = data["state"]
+        
+        if state == "done":
+            return data["resultUrl"]["jsonUrl"]
+        elif state == "failed":
+            error = data.get("errorMsg", "unknown error")
+            raise RuntimeError(f"OCR job failed: {error}")
+            
+        time.sleep(0.5)
+    raise TimeoutError(f"OCR job {job_id} did not complete within fast timeout.")
+
+
+def ocr_image_bytes(img_bytes: bytes, filename: str = "image.png") -> str:
+    """Gửi ảnh raw bytes lên API, đợi và trả về text."""
+    job_id = submit_image_job(img_bytes, filename)
+    result_url = _poll_job_fast(job_id)
     return download_markdown(result_url)
 
 

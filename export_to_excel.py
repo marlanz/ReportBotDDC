@@ -58,7 +58,7 @@ def log(message: str) -> None:
 # =========================
 # CONFIG
 # =========================
-DEFAULT_INPUT_DIR = os.path.join(os.path.dirname(__file__), "ah_raw_bill")
+DEFAULT_INPUT_DIR = os.path.join(os.path.dirname(__file__), "output_bill")
 DEFAULT_OUTPUT = os.path.join(os.path.dirname(__file__), "hoa_don_export.xlsx")
 
 # Màu header (xanh dương đậm)

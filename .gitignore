@@ -63,9 +63,15 @@ exports/
 hoa_don_output.json
 test_pdf/
 
-output_bill/
+output_bill/*
 raw_bill/
 
 hoa_don_export.xlsx
 
 customer_codes.json
+
+monthlyreport/
+
+ah_raw_bill/*
+la_raw_bill/*
+

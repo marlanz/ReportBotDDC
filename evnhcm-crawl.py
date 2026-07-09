@@ -13,7 +13,8 @@ PASSWORD = os.getenv("EVN_AH_PASSWORD")
 CRAWL_PAGE = "https://www.evnhcmc.vn/Tracuu/HDDT"
 
 # Global Configuration
-TARGET_MONTH = 6  # Configurable calendar month (1 = Jan, ..., 7 = Jul, etc.)
+MONTH_OF_BILL = 6
+YEAR_OF_BILL = 2026
 SAVED_DIR = "ah_raw_bill"  # Directory to save bills
 
 if not PHONE or not PASSWORD:
