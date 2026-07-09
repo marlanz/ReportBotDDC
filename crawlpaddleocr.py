@@ -33,7 +33,7 @@ JOB_URL = "https://paddleocr.aistudio-app.com/api/v2/ocr/jobs"
 TOKEN = os.getenv("PADDLEOCR_TOKEN").strip()
 MODEL = os.getenv("PADDLEOCR_MODEL").strip()
 
-# DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./raw_bill/hoa_don_ki_3_t6")
+# DEFAULT_PDF_DIR = os .path.join(os.path.dirname(__file__), "./raw_bill/hoa_don_ki_3_t6")
 # DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don__ki3_t6_output.json")
 
 DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./la_raw_bill/2026_06")

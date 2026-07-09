@@ -65,7 +65,7 @@ PASSWORD = os.getenv("EVN_LA_PASSWORD", "").strip()
 SAVED_DIR       = Path("la_raw_bill")   # where PDFs are stored
 MAX_CAPTCHA_ATTEMPTS = 5
 
-MONTH_OF_BILL=6
+MONTH_OF_BILL=5
 YEAR_OF_BILL=2026
 
 
