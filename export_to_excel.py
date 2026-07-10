@@ -59,7 +59,7 @@ def log(message: str) -> None:
 # CONFIG
 # =========================
 DEFAULT_INPUT_DIR = os.path.join(os.path.dirname(__file__), "output_bill")
-DEFAULT_OUTPUT = os.path.join(os.path.dirname(__file__), "hoa_don_export.xlsx")
+DEFAULT_OUTPUT = os.path.join(os.path.dirname(__file__), "DDCLA- BÁO CÁO TIỀN ĐIỆN TIÊU THỤ LONG AN THÁNG 01-2025.xlsx")
 
 # Màu header (xanh dương đậm)
 HEADER_FILL = PatternFill("solid", fgColor="1F4E79")

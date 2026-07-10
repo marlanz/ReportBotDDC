@@ -36,8 +36,59 @@ MODEL = os.getenv("PADDLEOCR_MODEL").strip()
 # DEFAULT_PDF_DIR = os .path.join(os.path.dirname(__file__), "./raw_bill/hoa_don_ki_3_t6")
 # DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don__ki3_t6_output.json")
 
-DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./la_raw_bill/2026_06")
-DEFAULT_OUTPUT  = os.path.join(os.path.dirname(__file__), "./output_bill/hoa_don_t6_la_output.json")
+DEFAULT_PDF_DIR = os.path.join(os.path.dirname(__file__), "./la_raw_bill/2025_01")
+
+
+def build_output_path(pdf_dir: str) -> str:
+    """
+    Tự động tạo đường dẫn file JSON đầu ra từ pdf_dir.
+
+    Quy tắc chuyển đổi:
+        ./<factory>_raw_bill/YYYY_MM  →  ./output_bill/hoa_don_<factory>_MMYY.json
+
+    Ví dụ:
+        ./la_raw_bill/2026_06   →  ./output_bill/hoa_don_la_0626.json
+        ./hcm_raw_bill/2025_12  →  ./output_bill/hoa_don_hcm_1225.json
+        ./dn_raw_bill/2024_01   →  ./output_bill/hoa_don_dn_0124.json
+    """
+    # Normalise: remove trailing separator, keep only the raw path string
+    # (strip any os.path.join prefix so we work on the relative part)
+    raw = pdf_dir.replace("\\", "/").rstrip("/")
+
+    # Extract the last two path components: '<factory>_raw_bill' and 'YYYY_MM'
+    parts = raw.split("/")
+    period_part  = parts[-1]   # e.g. '2026_06'
+    dir_part     = parts[-2]   # e.g. 'la_raw_bill'
+
+    # Parse factory: everything before '_raw_bill'
+    factory_match = re.match(r"^(.+?)_raw_bill$", dir_part)
+    if not factory_match:
+        raise ValueError(
+            f"Cannot parse factory from directory name '{dir_part}'. "
+            "Expected format: '<factory>_raw_bill'"
+        )
+    factory = factory_match.group(1)  # e.g. 'la'
+
+    # Parse YYYY_MM and reformat as MMYY
+    period_match = re.match(r"^(\d{4})_(\d{2})$", period_part)
+    if not period_match:
+        raise ValueError(
+            f"Cannot parse billing period from '{period_part}'. "
+            "Expected format: 'YYYY_MM'"
+        )
+    yyyy, mm = period_match.group(1), period_match.group(2)
+    mmyy = mm + yyyy[2:]  # e.g. '2026_06' → '0626'
+
+    # Build the output path at the project root (two levels up from pdf_dir):
+    #   pdf_dir = <root>/<factory>_raw_bill/YYYY_MM
+    #   dirname once  → <root>/<factory>_raw_bill
+    #   dirname twice → <root>
+    root_dir = os.path.dirname(os.path.dirname(pdf_dir))
+    output_filename = f"hoa_don_{factory}_{mmyy}.json"
+    return os.path.join(root_dir, "output_bill", output_filename)
+
+
+DEFAULT_OUTPUT = build_output_path(DEFAULT_PDF_DIR)
 
 
 POLL_INTERVAL_SEC = 5      # giây giữa các lần poll
@@ -617,6 +668,7 @@ def main():
         "clients": all_records,
     }
 
+    os.makedirs(os.path.dirname(args.output), exist_ok=True)
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
 
